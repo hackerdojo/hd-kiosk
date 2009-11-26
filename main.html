@@ -2,14 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
 <head> 
 <link type="text/css" rel="stylesheet" href="http://www.dustball.com/dojo/kiosk.css" />  
+<meta http-equiv="refresh" content="60" />
+<script type="text/javascript" language="javascript" src="/static/niftyplayer.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <title>Hacker Dojo Kiosk</title>
-<script type="text/javascript"> 
+<script type="text/javascript" charset="utf-8">
 function showmsg(m) {
   msgbox = document.getElementById("msg");
   msgbox.style.display="block";
   msgbox.innerHTML = m;
   setTimeout('msgbox.style.display="none";',3000);
 } 
+      function gotMsg(msg) { 
+        if (msg.indexOf("say") >= 0) {
+          msg = eval("(" + msg + ")");
+		  showmsg(msg["text"]);
+		  niftyplayer("niftyPlayer1").loadAndPlay("http://chapaai.adamsmith.as:8999/speech?text="+msg["text"]);
+		  document.getElementById("staff").src = document.getElementById("staff").src;
+        }
+        waitForMsg(); 
+      }
+      function waitForMsg(){ $('body').append('\<script type="text/javascript" src="http://live.readyinrealtime.com/hackerdojo-signin?callback=gotMsg">\<\/script>'); }
+      $(document).ready(function(){ setTimeout(waitForMsg, 4000); });
 </script> 
 </head> 
 <body> 
@@ -20,8 +34,8 @@ function showmsg(m) {
   <img src="http://www.dustball.com/dojo/logo.png" width=345 height=122 > 
   </td>
   <td>
-  <h1>Welcome to the Hacker Dojo</h1>
-  <h3>Please enjoy your visit!</h3>
+  <h1>Welcome to Hacker Dojo</h1>
+  <h3>Sign-in is now at the front desk behind you!</h3>
   </td>
   </tr></table>
 </div>  
@@ -33,20 +47,22 @@ function showmsg(m) {
 <div id=left> 
   <h2 class="sectionhead">Currently Staffing</h2>
 
-  <iframe style="border:none" border=0 height=80% width=100% src="http://hackerdojo-signin.appspot.com/staff"></iframe> 
+  <iframe style="border:none" id="staff" border=0 height=80% width=100% src="http://hackerdojo-signin.appspot.com/staff"></iframe> 
    
 </div>  
  
 <div id=right style=""> 
-  <h2 class="sectionhead">Information</h2>
-  <!--
-  <iframe src="http://www.google.com/calendar/hosted/hackerdojo.com/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=hackerdojo.com_4bgpdkg6uqk07lo121fctobgdo%40group.calendar.google.com&amp;color=%23AB8B00&amp;src=hackerdojo.com_1sko18ics0ls33dbfl7ia4rkco%40group.calendar.google.com&amp;color=%23B1440E&amp;ctz=America%2FLos_Angeles" style=" border-width:0 " width="100%" height="80%" frameborder="0" scrolling="no"></iframe>
- -->
-
-  <iframe style="border:none" border=0 height=80% width=100%
-    src="http://hackerdojo.pbworks.com/api_v2/op/GetPage/page/InfoDisplay/_type/html"></iframe> 
+  <h2 class="sectionhead">Schedule</h2>
+  <iframe src="http://www.google.com/calendar/hosted/hackerdojo.com/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=hackerdojo.com_4bgpdkg6uqk07lo121fctobgdo%40group.calendar.google.com&amp;color=%23AB8B00&amp;src=hackerdojo.com_1sko18ics0ls33dbfl7ia4rkco%40group.calendar.google.com&amp;color=%23B1440E&amp;ctz=America%2FLos_Angeles" style=" border-width:0 " width="100%" height="90%" frameborder="0" scrolling="no"></iframe>
 </div> 
 
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="165" height="38" id="niftyPlayer1" align="">
+  <param name=movie value="/static/niftyplayer.swf">
+  <param name=quality value=high>
+  <param name=bgcolor value=#FFFFFF>
+  <embed src="/static/niftyplayer.swf" quality=high bgcolor=#FFFFFF width="0" height="0" name="niftyPlayer1" align="" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+  </embed>
+</object>
   
 </body> 
 </html>
