@@ -1,3 +1,27 @@
+function letsDance() {
+    document.body.style.background="#"+randhex()+randhex()+randhex()+randhex()+randhex()+randhex();
+    var fore = "#"+randhexlight()+randhexlight()+randhexlight()+randhexlight()+randhexlight()+randhexlight();
+
+    $(".jiggle").each(function(i) {
+        this.style.color = fore;
+        this.style.position = "relative";
+        this.style.top = jiggly()+"px";
+        this.style.left = Math.floor(Math.round(Math.random() * 20))+"px";
+    });
+}
+
+function jiggly() {
+    return 10-Math.floor(Math.round(Math.random() * 20));
+}
+
+function randhex() {
+    return String.fromCharCode(97 + Math.round(Math.random() * 6));
+}
+
+function randhexlight() {
+    return Math.round(Math.random() * 6);
+}
+
 function showmsg(m) {
     msgbox = document.getElementById("msg");
     msgbox.style.display="block";
@@ -25,5 +49,6 @@ function gotMsg(msg) {
 function waitForMsg(){ $('body').append('\<script type="text/javascript" src="http://live.readyinrealtime.com/hackerdojo-signin?callback=gotMsg">\<\/script>'); }
 
 $(document).ready(function(){
-        setTimeout(waitForMsg, 4000);
+    setTimeout(waitForMsg, 4000);
+    letsDance();
 });
