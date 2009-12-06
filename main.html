@@ -7,6 +7,31 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <title>Hacker Dojo Kiosk</title>
 <script type="text/javascript" charset="utf-8">
+
+function onl() {
+ document.body.style.background="#"+randhex()+randhex()+randhex()+randhex()+randhex()+randhex();
+ var fore = "#"+randhexlight()+randhexlight()+randhexlight()+randhexlight()+randhexlight()+randhexlight();
+ 
+ $(".jiggle").each(function(i) {
+   this.style.color = fore;
+   this.style.position = "relative"; 
+   this.style.top = jiggly()+"px";
+   this.style.left = Math.floor(Math.round(Math.random() * 20))+"px";
+  }); 
+}
+
+function jiggly() {
+  return 10-Math.floor(Math.round(Math.random() * 20));
+}
+
+function randhex() {
+  return String.fromCharCode(97 + Math.round(Math.random() * 6));
+}
+
+function randhexlight() {
+  return Math.round(Math.random() * 6);
+}
+
 function showmsg(m) {
   msgbox = document.getElementById("msg");
   msgbox.style.display="block";
@@ -36,16 +61,16 @@ function playsound(file) {
 	});
 </script> 
 </head> 
-<body> 
+<body onload="onl();"> 
 
 <div id=top> 
   <table width=100%><tr>
   <td>
-  <img src="http://www.dustball.com/dojo/logo.png" width=345 height=122 > 
+  <img class="jiggle" src="http://www.dustball.com/dojo/logo.png" width=345 height=122 > 
   </td>
   <td>
-  <h1>Welcome to Hacker Dojo</h1>
-  <h3>NOTICE: Sign-in is now at the front desk... behind you!</h3>
+  <h1 class="jiggle">Welcome to Hacker Dojo</h1>
+  <h3 class="jiggle">NOTICE: Sign-in is now at the front desk... behind you!</h3>
   </td>
   </tr></table>
 </div>  
@@ -55,16 +80,21 @@ function playsound(file) {
 </div>
  
 <div id=left> 
+<div class="jiggle"  style="height:100%">
+
   <h2 class="sectionhead">Currently Staffing</h2>
 
   <iframe style="border:none" id="staff" border=0 height=80% width=100% src="http://hackerdojo-signin.appspot.com/staff"></iframe> 
    
+</div>
 </div>  
  
 <div id=right style=""> 
+<div class="jiggle" style="height:100%">
   <h2 class="sectionhead">Schedule</h2>
   <iframe src="http://www.google.com/calendar/hosted/hackerdojo.com/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=hackerdojo.com_4bgpdkg6uqk07lo121fctobgdo%40group.calendar.google.com&amp;color=%23AB8B00&amp;src=hackerdojo.com_1sko18ics0ls33dbfl7ia4rkco%40group.calendar.google.com&amp;color=%23B1440E&amp;ctz=America%2FLos_Angeles" style=" border-width:0 " width="100%" height="90%" frameborder="0" scrolling="no"></iframe>
 </div> 
+</div>
 
   <a href="javascript:alert(niftyplayer('niftyPlayer1').getState());">.</a>
 </body> 
