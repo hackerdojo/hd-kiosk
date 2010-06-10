@@ -1,10 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
-<head> 
-<link type="text/css" rel="stylesheet" href="http://www.dustball.com/dojo/kiosk.css" />  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<link type="text/css" rel="stylesheet" href="http://www.dustball.com/dojo/kiosk.css" />
 <meta http-equiv="refresh" content="180" />
-<script type="text/javascript" language="javascript" src="/static/niftyplayer.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/static/niftyplayer.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="/static/sounds.js"></script>
 <title>Hacker Dojo Kiosk</title>
 <script type="text/javascript" charset="utf-8">
 
@@ -64,23 +66,23 @@ function playsound(file) {
 </head> 
 <body onload="onl();"> 
 
-<div id=top> 
-  <table width=100%><tr>
+<div id="top"> 
+  <table width="100%"><tr>
   <td>
-  <img class="jiggle" src="http://www.dustball.com/dojo/logo.png" width=345 height=122 > 
+  <img class="jiggle" src="http://www.dustball.com/dojo/logo.png" width="345" height="122" alt="Hacker Dojo Logo" /> 
   </td>
   <td>
   <h1 class="jiggle">Welcome to Hacker Dojo</h1>
   <h3 class="jiggle">NOTICE: Sign-in is now at the front desk... behind you!</h3>
   </td>
   </tr></table>
-</div>  
- 
-<div id=msg> 
+</div>
+
+<div id="msg">
   &nbsp;
 </div>
  
-<div id=left> 
+<div id="left"> 
 <div class="jiggle"  style="height:100%">
 
   <h2 class="sectionhead">Currently Staffing</h2>
@@ -98,5 +100,5 @@ function playsound(file) {
 </div>
 
   <a href="javascript:alert(niftyplayer('niftyPlayer1').getState());">.</a>
-</body> 
+</body>
 </html>
