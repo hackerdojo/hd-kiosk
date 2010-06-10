@@ -50,5 +50,5 @@ function waitForMsg(){ $('body').append('\<script type="text/javascript" src="ht
 
 $(document).ready(function(){
     setTimeout(waitForMsg, 4000);
-    letsDance();
+    //letsDance();
 });
