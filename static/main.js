@@ -14,12 +14,15 @@ function refreshPage() {
   $.ajax({
     url: '/',
     success: function(data) {
+      if (window.oldint) {
+        clearTimeout(window.oldint);
+      }      
       $('#body').html(data);
     }
   });
 }
 
 $(document).ready(function(){
-    setInterval(refreshPage,3 * 60 * 1000);
+    window.oldint = setInterval(refreshPage,3 * 60 * 1000);
     letsDance();
 });
