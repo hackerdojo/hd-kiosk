@@ -27,3 +27,5 @@ h1,h2,h3 {margin-top:0;margin-bottom:.5em}
 .openline, .closeline {padding-top:.7em; font-size:12px; width:100%; text-align:center}
 .openline {color:green;}
 .closeline {color:red;}
+
+#reloadcount {position:absolute; top:3px; right:3px; color:#ddd}
