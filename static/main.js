@@ -1,3 +1,5 @@
+var minutes = 60000;  /*number of milliseconds in a minute*/
+
 function letsDance() {
     $(".jiggle").each(function(i) {
         this.style.position = "relative";
@@ -10,27 +12,28 @@ function jiggly() {
     return 10-Math.floor(Math.round(Math.random() * 20));
 }
 
-function refreshPage() {
+function refreshStaff() {
   $.ajax({
-    url: '/',
+    url: 'http://hackerdojo-signin.appspot.com/staff',
     success: function(data) {
-      var tmp = window.i;
-      if (window.oldint) {
-        clearTimeout(window.oldint);
-      }      
-      $('#body').html(data);
-      if (window.oldint) {
-        clearTimeout(window.oldint);
-      }      
-      window.i = tmp + 1;
-      $('#reloadcount').html(" "+window.i);
-      window.oldint = setInterval(refreshPage, 2 * 60 * 1000);
+      $('#staff').src(data);
+      window.oldStaffInt = setInterval(refreshPage, 2 * minutes);
+    }
+  });
+}
+
+function refreshEvent() {
+  $.ajax({
+    url: 'http://events.hackerdojo.com/?base=mini',
+    success: function(data) {
+      $('#events').src(data);
+      window.oldEventsInt = setInterval(refreshPage, 6 * 60 * minutes);
     }
   });
 }
 
 $(document).ready(function(){
-    window.i = 0;
-    window.oldint = setInterval(refreshPage,2 * 60 * 1000);
+    window.oldStaffInt = setInterval(refreshPage,2 * minutes);
+    window.oldEventsInt = setInterval(refreshPage,6 * 60 * minutes);
     letsDance();
 });
