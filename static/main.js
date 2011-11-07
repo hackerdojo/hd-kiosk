@@ -13,27 +13,23 @@ function jiggly() {
 }
 
 function refreshStaff() {
-  $.ajax({
-    url: 'http://hackerdojo-signin.appspot.com/staff',
-    success: function(data) {
-      $('#staff').src(data);
-      window.oldStaffInt = setInterval(refreshPage, 2 * minutes);
-    }
-  });
+  $('#staff').attr('src', 'http://hackerdojo-signin.appspot.com/staff');
+  window.StaffCount++;
+  $('#staffReloadCount').html(" "+window.StaffCount);
+  window.oldStaffInt = setTimeout(refreshStaff, 2 * minutes);
 }
 
-function refreshEvent() {
-  $.ajax({
-    url: 'http://events.hackerdojo.com/?base=mini',
-    success: function(data) {
-      $('#events').src(data);
-      window.oldEventsInt = setInterval(refreshPage, 6 * 60 * minutes);
-    }
-  });
+function refreshEvents() {
+  $('#events').attr('src', 'http://events.hackerdojo.com/?base=mini');
+  window.EventsCount++;
+  $('#eventsReloadCount').html(" "+window.EventsCount);
+  window.oldEventsInt = setTimeout(refreshEvents, 6 * 60 * minutes);
 }
 
 $(document).ready(function(){
-    window.oldStaffInt = setInterval(refreshPage,2 * minutes);
-    window.oldEventsInt = setInterval(refreshPage,6 * 60 * minutes);
+    window.EventsCount = 0;
+    window.StaffCount = 0;
+    window.oldStaffInt = setTimeout(refreshStaff,0.25 * minutes);
+    window.oldEventsInt = setTimeout(refreshEvents,6 * 60 * minutes);
     letsDance();
 });
