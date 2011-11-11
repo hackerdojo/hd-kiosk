@@ -17,6 +17,7 @@ function refreshStaff() {
   window.StaffCount++;
   $('#staffReloadCount').html(" "+window.StaffCount);
   window.oldStaffInt = setTimeout(refreshStaff, 2 * minutes);
+  letsDance();
 }
 
 function refreshEvents() {
