@@ -28,4 +28,4 @@ h1,h2,h3 {margin-top:0;margin-bottom:.5em}
 .openline {color:green;}
 .closeline {color:red;}
 
-#reloadcount {position:absolute; top:3px; right:3px; color:#ddd}
+.reloadcount {position:absolute; top:3px; right:3px; color:#ddd}
