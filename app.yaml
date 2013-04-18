@@ -1,6 +1,6 @@
-application: hackerdojo-kiosk
+application: hackerdojo-kiosk-hrd
 version: 1
-runtime: python
+runtime: python27
 api_version: 1
 threadsafe: true
 
@@ -8,4 +8,4 @@ handlers:
 - url: /static
   static_dir: static
 - url: .*
-  script: main.py
+  script: main.app

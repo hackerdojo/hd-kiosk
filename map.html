@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <title>Hacker Dojo Map</title>
+<style>
+body,p {font-family:sans-serif}
+.marker {
+-moz-transform: rotate(-38deg) translate(25px,-60px);
+-webkit-transform: rotate(-38deg) translate(25px,-60px);
+-o-transform: rotate(-38deg) translate(25px,-60px);
+-ms-transform: rotate(-38deg) translate(25px,-60px);
+transform: rotate(-38deg) translate(25px,-60px);
+
+} `
+html, body, img {overflow:hidden}
+
+::-webkit-scrollbar, #element::-webkit-scrollbar { 
+    display: none; 
+}
+
+body {
+    -moz-transform: scale({{scale}}, {{scale}}); 
+    -webkit-transform: scale({{scale}}, {{scale}}); 
+    -o-transform: scale({{scale}}, {{scale}});
+    -ms-transform: scale({{scale}}, {{scale}});
+    transform: scale({{scale}}, {{scale}}); 
+    -moz-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+} `
+
+</style>
+
+</head> 
+<body id="body"> 
+
+<div style="position:relative; top:0; left:0; width:1000px; height:1000px">
+<form id="deets" method=post style="display:none; position:absolute; background:white; z-index:40; top:400px; left:300px; width:400px; height:250px; border:2px solid #a9bbff; padding:12px; border-radius:6px; box-shadow: 10px 10px 20px #999;">
+<div style="border-bottom:1px solid black; font-weight:bold; font-variant:small-caps; margin-bottom:1em">Saving your position</div>
+<label>1) How long do you expect to be there? </label>
+<input id="hours" type=text value="6" size=2 maxlength=3 name="hours"> hours
+<br><br>  
+<label>2) Actively interested in communicating with humans? List your interested topics here.</label>
+<br><br>
+<textarea maxlength=100 placeholder="linux kernel development, python, css" name=discuss style="width:90%" rows=3></textarea><p><small>(Leave blank otherwise.)</small></p>
+<input type=hidden name=x id=locx value="">
+<input type=hidden name=y id=locy value="">
+<input type=submit value="Save Location">
+</form>
+
+{% if not readonly %}
+<div id="legend" style="position:absolute; text-align:right; background:white; z-index:20; top:24px; right:24px; font-size:90%">
+<p><b>Hello, Dojo Friend.</b></p>
+<p>Where are you working today?<br>Click on the map if you want<br>to share with others.</p>
+</div>
+{% endif %}
+
+<!--
+<div id="marker" style="z-index:3; position:absolute; top:-100px; left:-100px; display:inline; color:red"><nobr>
+x <div style="background:#fffab0; display:inline; color: black; padding:3px 6px"><nobr>{{user.nickname}}</nobr></div>
+</nobr></div>
+-->
+
+<div class='marker' id="marker" style="white-space:nowrap; z-index:10; position:absolute; top:-100px; left:-100px; display:inline; color:red"><table border=0 cellspacing=0 cellpadding=0><tr><td>x&nbsp;</td><td><img  src="{{myicon}}" height=24 width=24 style="border:0; "></td><td style="background:#fffab0"><div style="white-space:nowrap; color: black; background:#fffab0;">&nbsp;{{user.nickname}}&nbsp;</div></td></tr></table></div>
+
+
+{% for l in locations %}
+<div class='marker' style="white-space:nowrap; z-index:3; position:absolute; top:{{l.y}}px; left:{{l.x}}px; display:inline; color:red"><table border=0 cellspacing=0 cellpadding=0><tr><td width=1>x&nbsp;</td><td width=24><img  src="{{l.icon}}" height=24 width=24 style="border:0; "></td><td style="background:#fffab0"><div style="white-space:nowrap; color: black; background:#fffab0;">&nbsp;{{l.username}}&nbsp;</div></td></tr>
+{% if l.discuss %}
+<tr><td></td><td colspan=2 style="background:white; color:#666; font-size:82%; padding:2px"><div style="max-width:200px; white-space:normal">Talk to me about: {{l.discuss}}<div></td></tr>
+{% endif %}
+
+</table></div>
+{% endfor %}
+
+<img style="{% if not readonly %}cursor:pointer;{% endif %} z-:index:2; position:absolute; top:0; left:0" id="map" src="/static/map.png" width="1000" height="1000" alt="map" border="0">
+
+{% if not readonly %}
+<script>
+$(document).ready(function() {
+  $("#map").click(function(e) {
+    var offset = $(this).offset();
+    x = e.pageX - offset.left;
+    y = e.pageY - offset.top;
+    $("#marker").css("left",x);
+    $("#marker").css("top",y);
+    $("#deets").show();
+    $("#locx").val(x);
+    $("#locy").val(y);
+  });
+  jQuery('#hours').keyup(function () { 
+      this.value = this.value.replace(/[^0-9]/g,'');
+  });
+});
+</script>
+{% endif %}
+
+</body>
+</html>
