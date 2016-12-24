@@ -38,7 +38,7 @@ body {
 </head> 
 <body id="body"> 
 
-<div style="position:relative; top:0; left:0; width:1000px; height:1000px">
+<div style="position:relative; top:0; left:0; width:1000px;">
 <form id="deets" method=post style="display:none; position:absolute; background:white; z-index:40; top:400px; left:300px; width:400px; height:250px; border:2px solid #a9bbff; padding:12px; border-radius:6px; box-shadow: 10px 10px 20px #999;">
 <div style="border-bottom:1px solid black; font-weight:bold; font-variant:small-caps; margin-bottom:1em">Saving your position</div>
 <label>1) How long do you expect to be there? </label>
@@ -77,7 +77,7 @@ x <div style="background:#fffab0; display:inline; color: black; padding:3px 6px"
 </table></div>
 {% endfor %}
 
-<img style="{% if not readonly %}cursor:pointer;{% endif %} z-:index:2; position:absolute; top:0; left:0" id="map" src="/static/map.png" width="1000" height="1000" alt="map" border="0">
+<img style="{% if not readonly %}cursor:pointer;{% endif %} z-:index:2; position:absolute; top:0; left:0" id="map" src="/static/map.png" width="1000" alt="map" border="0">
 
 {% if not readonly %}
 <script>
